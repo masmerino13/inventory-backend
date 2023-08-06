@@ -10,7 +10,8 @@ export class AuthService {
   ) {}
 
   async singIn(username: string, pwd: string): Promise<any> {
-    const user = await this.usersService.findOne(username);
+    console.log('user name ---', username)
+    const user = await this.usersService.findOneByUsername(username);
 
     if (user?.password !== pwd) {
       throw new UnauthorizedException();
