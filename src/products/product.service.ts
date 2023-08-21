@@ -35,4 +35,10 @@ export class ProductsService {
       },
     });
   }
+
+  async findOne(id: string) {
+    const parsedId = parseInt(id, 10);
+
+    return await this.productRepository.findByPk(parsedId);
+  }
 }

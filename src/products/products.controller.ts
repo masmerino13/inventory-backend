@@ -8,6 +8,7 @@ import {
   Request,
   UseGuards,
   Query,
+  Param,
 } from '@nestjs/common';
 import _isEmpty from 'lodash/isEmpty';
 
@@ -25,5 +26,11 @@ export class ProductsController {
     }
 
     return this.productService.search(params.haystack);
+  }
+
+  @HttpCode(HttpStatus.OK)
+  @Get(':id')
+  getDetail(@Param('id') id: string) {
+    return this.productService.findOne(id);
   }
 }
