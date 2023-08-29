@@ -1,4 +1,4 @@
-import { Op } from 'sequelize';
+import Sequelize, { Op } from 'sequelize';
 import { Injectable, Inject } from '@nestjs/common';
 
 import { Product } from './product.entity';
@@ -22,13 +22,14 @@ export class ProductsService {
       where: {
         [Op.or]: [
           {
-            code: {
-              [Op.iLike]: `%${haystack}%`,
-            },
-          },
-          {
             description: {
-              [Op.iLike]: `%${haystack}%`,
+              [Op.match]: Sequelize.fn(
+                'to_tsquery',
+                haystack
+                  .split(' ')
+                  .map((p) => `*${p}`)
+                  .join(' | '),
+              ),
             },
           },
         ],

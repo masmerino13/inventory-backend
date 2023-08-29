@@ -56,4 +56,10 @@ export class Product extends Model<Product> {
     allowNull: true,
   })
   image: string;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: true,
+  })
+  cars: string;
 }

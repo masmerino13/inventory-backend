@@ -8,4 +8,5 @@ export class ProductDto {
   readonly provider: number;
   readonly image: string;
   readonly information: string;
+  readonly cars: string;
 }

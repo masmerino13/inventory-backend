@@ -8,12 +8,14 @@ import { DatabaseModule } from './core/database/database.module';
 
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/product.module';
+import { CategoryModule } from './categories/categoryy.module';
 
 @Module({
   imports: [
     AuthModule,
     UsersModule,
     ProductsModule,
+    CategoryModule,
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
   ],
