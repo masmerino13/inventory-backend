@@ -5,6 +5,7 @@ import { Product } from './product.entity';
 import { ProductDto } from './product.dto';
 import { PRODUCT_REPOSITORY } from '../core/constants';
 import { Category } from 'src/categories/category.entity';
+import { Equivalent } from 'src/equivalents/equivalents.entity';
 
 @Injectable()
 export class ProductsService {
@@ -28,7 +29,7 @@ export class ProductsService {
                 'to_tsquery',
                 haystack
                   .split(' ')
-                  .map((p) => `*${p}*`)
+                  .map((p) => `*${p}`)
                   .join(' | '),
               ),
             },
@@ -49,6 +50,10 @@ export class ProductsService {
         {
           model: Category,
           attributes: ['id', 'name'],
+        },
+        {
+          model: Equivalent,
+          attributes: ['equivalentCode', 'equivalentVendor'],
         },
       ],
     });

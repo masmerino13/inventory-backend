@@ -5,8 +5,10 @@ import {
   DataType,
   BelongsTo,
   ForeignKey,
+  HasMany,
 } from 'sequelize-typescript';
 import { Category } from 'src/categories/category.entity';
+import { Equivalent } from 'src/equivalents/equivalents.entity';
 
 @Table
 export class Product extends Model<Product> {
@@ -86,4 +88,7 @@ export class Product extends Model<Product> {
     allowNull: true,
   })
   dol: string;
+
+  @HasMany(() => Equivalent, 'productId')
+  equivalents: Equivalent[];
 }

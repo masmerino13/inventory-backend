@@ -4,6 +4,7 @@ import { databaseConfig } from './database.config';
 import { User } from '../../users/user.entity';
 import { Product } from 'src/products/product.entity';
 import { Category } from 'src/categories/category.entity';
+import { Equivalent } from 'src/equivalents/equivalents.entity';
 
 export const databaseProviders = [
   {
@@ -24,7 +25,7 @@ export const databaseProviders = [
           config = databaseConfig.development;
       }
       const sequelize = new Sequelize(config);
-      sequelize.addModels([User, Product, Category]);
+      sequelize.addModels([User, Product, Category, Equivalent]);
       await sequelize.sync();
       return sequelize;
     },
