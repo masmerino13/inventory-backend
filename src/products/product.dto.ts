@@ -5,8 +5,10 @@ export class ProductDto {
   readonly price: number;
   readonly priceQuetzales: number;
   readonly priceProvider: number;
-  readonly provider: number;
+  readonly vendor: number;
   readonly image: string;
   readonly information: string;
   readonly cars: string;
+  readonly oem: string;
+  readonly dol: string;
 }

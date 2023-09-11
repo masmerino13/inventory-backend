@@ -1,4 +1,12 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  BelongsTo,
+  ForeignKey,
+} from 'sequelize-typescript';
+import { Category } from 'src/categories/category.entity';
 
 @Table
 export class Product extends Model<Product> {
@@ -21,11 +29,15 @@ export class Product extends Model<Product> {
   })
   information: string;
 
+  @ForeignKey(() => Category)
   @Column({
     type: DataType.INTEGER,
     allowNull: true,
   })
   category: number;
+
+  @BelongsTo(() => Category)
+  productCategory: Category;
 
   @Column({
     type: DataType.FLOAT,
@@ -49,7 +61,7 @@ export class Product extends Model<Product> {
     type: DataType.INTEGER,
     allowNull: true,
   })
-  provider: number;
+  vendor: number;
 
   @Column({
     type: DataType.STRING,
@@ -62,4 +74,16 @@ export class Product extends Model<Product> {
     allowNull: true,
   })
   cars: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  oem: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  dol: string;
 }

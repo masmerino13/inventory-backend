@@ -4,6 +4,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Product } from './product.entity';
 import { ProductDto } from './product.dto';
 import { PRODUCT_REPOSITORY } from '../core/constants';
+import { Category } from 'src/categories/category.entity';
 
 @Injectable()
 export class ProductsService {
@@ -27,7 +28,7 @@ export class ProductsService {
                 'to_tsquery',
                 haystack
                   .split(' ')
-                  .map((p) => `*${p}`)
+                  .map((p) => `*${p}*`)
                   .join(' | '),
               ),
             },
@@ -40,6 +41,16 @@ export class ProductsService {
   async findOne(id: string) {
     const parsedId = parseInt(id, 10);
 
-    return await this.productRepository.findByPk(parsedId);
+    return await this.productRepository.findOne({
+      where: {
+        id: parsedId,
+      },
+      include: [
+        {
+          model: Category,
+          attributes: ['id', 'name'],
+        },
+      ],
+    });
   }
 }

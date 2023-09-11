@@ -1,0 +1,19 @@
+{
+  "type": "postgres",
+  "host": "yourhost",
+  "port": 5423,
+  "username": "ricardo",
+  "password": "ricardo",
+  "database": "db_inventory",
+  "synchronize": true,
+  "entities": [
+      "src/modules/**/*.entity.{ts,js}"
+  ],
+  "migrations": [
+      "src/typeorm/migrations/**/*.{ts,js}"
+  ],
+  "cli": {
+      "entitiesDir": "src",
+      "migrationsDir": "src/typeorm/migrations"
+  }
+}
