@@ -19,6 +19,12 @@ export class ProductsController {
   constructor(private productService: ProductsService) {}
 
   @HttpCode(HttpStatus.OK)
+  @Get('all')
+  list() {
+    return this.productService.showAll();
+  }
+
+  @HttpCode(HttpStatus.OK)
   @Get('search')
   signIn(@Query() params) {
     if (params.hasOwnProperty('haystack') && params.haystack.trim() === '') {

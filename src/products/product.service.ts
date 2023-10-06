@@ -58,4 +58,19 @@ export class ProductsService {
       ],
     });
   }
+
+  async showAll() {
+    return await this.productRepository.findAll({
+      include: [
+        {
+          model: Category,
+          attributes: ['id', 'name'],
+        },
+        {
+          model: Equivalent,
+          attributes: ['equivalentCode', 'equivalentVendor'],
+        },
+      ],
+    });
+  }
 }
