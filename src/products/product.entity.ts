@@ -89,6 +89,11 @@ export class Product extends Model<Product> {
   })
   dol: string;
 
+  @Column({
+    type: DataType.TSVECTOR,
+  })
+  _search: string;
+
   @HasMany(() => Equivalent, 'productId')
   equivalents: Equivalent[];
 }

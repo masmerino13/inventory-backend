@@ -22,19 +22,9 @@ export class ProductsService {
     return await this.productRepository.findAndCountAll({
       attributes: ['id', 'code', 'description', 'priceQuetzales'],
       where: {
-        [Op.or]: [
-          {
-            description: {
-              [Op.match]: Sequelize.fn(
-                'to_tsquery',
-                haystack
-                  .split(' ')
-                  .map((p) => `*${p}`)
-                  .join(' | '),
-              ),
-            },
-          },
-        ],
+        _search: {
+          [Op.match]: Sequelize.fn('plainto_tsquery', 'spanish', haystack),
+        },
       },
     });
   }
